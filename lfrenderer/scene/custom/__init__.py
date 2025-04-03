@@ -1,0 +1,3 @@
+from src.lfrenderer.scene.custom.chessboard import ChessboardSceneManager
+from src.lfrenderer.scene.custom.chessboard_silvr import ChessboardSceneSilvrManager
+from src.lfrenderer.scene.custom.objaverse import ObjaverseSceneManager

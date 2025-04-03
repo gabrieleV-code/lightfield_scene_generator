@@ -1,0 +1,47 @@
+##################
+# GLOBAL CONFIGS #
+##################
+global:
+  # Main directory where we save everything.
+  main_dir: C:\Users\gabri\OneDrive\Documenti\UniTO-DOCS\Stage\LightfieldsRenderer
+  # How many images we render
+  dataset_size: 20
+  # Scene manager (it should have the name of the blender file)
+  manager: objaverse
+
+camera:
+  # How many sensors do the camera have
+  sensors_row: 16
+  sensors_column: 16
+  sensors_row_offset: 100.0
+  sensors_column_offset: 100.0
+  sensors_scale: 0.000001
+  camera_scale: [0.004,0.004,0.004]
+  ortho_scale: [ 0.5, 1.5 ]
+  rotation_euler: [ -0.485398, 0.485398 ] #[ -0.785398, 0.785398 ]
+  distance: 1.5
+  dof: 1.5
+  theta: [175,320]
+  phi: [75,91]
+
+
+#################
+# SCENE CONFIGS #
+#################
+scene:
+  # Render samples
+  samples: [4095, 4096]
+  # Render x resolution (px)
+  resolution_x: 625
+  # Render y resolution (px)
+  resolution_y: 434
+
+
+##################
+# RENDER CONFIGS #
+##################
+render:
+  # If True we use CYCLES engine
+  cycles: TRUE
+  # Devices, CUDA or OPENCL
+  engine: "CUDA"
