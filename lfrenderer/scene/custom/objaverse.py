@@ -88,7 +88,8 @@ class ObjaverseSceneManager(SceneManager):
         lf = bpy.context.scene.lightfield[bpy.context.scene.lightfield_index]
         lf = (utils.get_lightfield_class(lf.lf_type))(lf)
 
-        lf.scale = config["camera"]["camera_scale"]
+        lf.scale = config["camera"]["camera_scale"]#Need to be checked in Lightfield file of addon (it could be useless)
+        lf.obj_empty.scale = config["camera"]["camera_scale"]
 
         lf.obj_camera.data.ortho_scale = random.uniform(config["camera"]["ortho_scale"][0],
                                                                             config["camera"]["ortho_scale"][1])
@@ -100,7 +101,7 @@ class ObjaverseSceneManager(SceneManager):
         random_camera_pos.random_position_on_semi_sphere(lf.obj_empty,center,r,theta,phi)
     
     def render_lightfield(self, img_idx: int, sensors_row_offset: float = 100.0, sensors_column_offset: float = 100,
-                          scale: float = 0.000001):
+                          scale: float = 0.004):
         lf = bpy.context.scene.lightfield[bpy.context.scene.lightfield_index]
         lf = (utils.get_lightfield_class(lf.lf_type))(lf)
 
