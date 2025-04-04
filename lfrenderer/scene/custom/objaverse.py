@@ -125,6 +125,7 @@ class ObjaverseSceneManager(SceneManager):
         for obj in bpy.context.scene.objects:
             if obj.type == 'LIGHT':
                 obj.rotation_euler[2] = math.radians(random.randrange(20,70))
+                obj.data.energy = random.uniform(4.5,5.5)
 
         """ obj_to_load = object_number
         i=0
@@ -168,6 +169,8 @@ class ObjaverseSceneManager(SceneManager):
             assert False, "ObjaverseSceneManager -> node_color1 or node_color2 not available in the nodetree."
         node_color1.inputs['Value'].default_value = random.uniform(0.3,0.6)
         node_color2.inputs['Value'].default_value = random.uniform(0.3,0.6)
+
+        main_mat.input['Scale'] = random.uniform(10,20)
 
 
 
