@@ -26,6 +26,7 @@ It is then possible to generate a lightfield plane inside a scene that will be u
 - The scene requires a object called PhotoSet with a material called mat_photoset placed on it.
 - The mat_photoset has a checker texture which colors are modified by the program. Their nodes should be HSV, named Color1 and Color2.
 - The scene should contain a lightfield plane inside a scene throught the modified IdLabMedia add-on (it will be used as main camera).
+- Be sure to have some objaverse mesh downloaded in the form of glbl file (you can use this [script](Tools/Objaverse_Scene_Tools/objaverse_downloader.py) to download them).
 
 ## Usage
 - Configure the [yaml](configs/generic_lenlets.yaml) file for the scene settings.
