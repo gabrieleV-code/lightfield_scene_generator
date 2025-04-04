@@ -120,7 +120,7 @@ class ObjaverseSceneManager(SceneManager):
 
         bpy.ops.object.select_all(action='DESELECT')
         object_number = 15
-        loaded_objects_number = blender_loader_.load_Objects(object_number)
+        loaded_objects_number = blender_loader_.load_Objects(object_number,config)
 
         for obj in bpy.context.scene.objects:
             if obj.type == 'LIGHT':
@@ -170,7 +170,7 @@ class ObjaverseSceneManager(SceneManager):
         node_color1.inputs['Value'].default_value = random.uniform(0.3,0.6)
         node_color2.inputs['Value'].default_value = random.uniform(0.3,0.6)
 
-        main_mat.input['Scale'] = random.uniform(10,20)
+        main_mat.node_tree.nodes.get('Checker Texture').inputs['Scale'].default_value = random.uniform(10,20)
 
 
 

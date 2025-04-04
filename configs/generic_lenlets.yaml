@@ -8,6 +8,9 @@ global:
   dataset_size: 20
   # Scene manager (it should have the name of the blender file)
   manager: objaverse
+  # Objaverse directory (used to load the objaverse objects)
+  objaverse_dir: C:\Users\gabri\.objaverse\hf-objaverse-v1\glbs
+
 
 camera:
   # How many sensors do the camera have

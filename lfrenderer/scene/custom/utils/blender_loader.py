@@ -44,9 +44,9 @@ def deleteAllObjects():
             bpy.data.objects.remove(obj, do_unlink=True)
         bpy.data.collections.remove(collection)
 
-def load_Objects(object_number):
+def load_Objects(object_number,config: dict):
     deleteAllObjects()
-
+    path_to_glb_folder = config["global"]["objaverse_dir"]
     glb_dirList = os.listdir(path_to_glb_folder)
     print(glb_dirList)
 
