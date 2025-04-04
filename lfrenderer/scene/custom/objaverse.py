@@ -119,8 +119,8 @@ class ObjaverseSceneManager(SceneManager):
         bpy.context.scene.cycles.samples = random.randint(config["scene"]["samples"][0], config["scene"]["samples"][1])
 
         bpy.ops.object.select_all(action='DESELECT')
-        object_number = 15
-        loaded_objects_number = blender_loader_.load_Objects(object_number,config)
+        #tested with object_number = 15
+        loaded_objects_number = blender_loader_.load_Objects(config)
 
         for obj in bpy.context.scene.objects:
             if obj.type == 'LIGHT':

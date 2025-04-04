@@ -11,6 +11,8 @@ global:
   # Objaverse directory (used to load the objaverse objects)
   objaverse_dir: C:\Users\gabri\.objaverse\hf-objaverse-v1\glbs
 
+objaverse:
+  objects_number: 15
 
 camera:
   # How many sensors do the camera have

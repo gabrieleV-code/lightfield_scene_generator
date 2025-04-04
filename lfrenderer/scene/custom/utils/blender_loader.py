@@ -8,7 +8,7 @@ import math
 from src.lfrenderer.scene.custom.utils.random_displacement import displace_objects
 import numpy as np
 
-path_to_glb_folder = r"C:\Users\gabri\.objaverse\hf-objaverse-v1\glbs" 
+#path_to_glb_folder = r"C:\Users\gabri\.objaverse\hf-objaverse-v1\glbs" 
 path_to_jpeg_folder = "/Users/Path/To/Folder"
 
 def roundup_(number):
@@ -44,9 +44,10 @@ def deleteAllObjects():
             bpy.data.objects.remove(obj, do_unlink=True)
         bpy.data.collections.remove(collection)
 
-def load_Objects(object_number,config: dict):
+def load_Objects(config: dict):
     deleteAllObjects()
     path_to_glb_folder = config["global"]["objaverse_dir"]
+    object_number = config['objaverse']['objects_number']
     glb_dirList = os.listdir(path_to_glb_folder)
     print(glb_dirList)
 
