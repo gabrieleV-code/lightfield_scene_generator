@@ -30,6 +30,8 @@ def main(config: dict):
 
     scenes_n = 25
     number_of_renders = 10
+
+    #Setup the scene for rendering
     for scene_idx in range(scenes_n):
         scene_name = "Scene_"+str(scene_idx)
         from src.blender_utilities import init_for_render,save_scene
@@ -38,6 +40,8 @@ def main(config: dict):
         scene_manager = get_scene_manager(config["global"]["manager"], output_scene_dir,
                                         row_sensors=row_sensors, column_sensors=column_sensors)
         loop = "No"
+
+        #Check if the user what to generate another scene
         while(loop=="No"):
             scene_manager.randomize_scene(config)
             

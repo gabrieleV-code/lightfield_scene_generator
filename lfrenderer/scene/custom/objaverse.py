@@ -111,6 +111,7 @@ class ObjaverseSceneManager(SceneManager):
 
     def randomize_camera(self,config: dict):
         self._randomize_camera_settings(config)
+        self._randomize_photoset(config)
         self.show_scene(config)
 
     def _randomize_scene(self,config: dict):
@@ -131,6 +132,42 @@ class ObjaverseSceneManager(SceneManager):
             loaded_objects_number = blender_loader_.load_Objects(object_number)
             obj_to_load -= loaded_objects_number
             i+=1 """
+        
+        
+    def _randomize_photoset(self, config:dict):
+        # Prepare photoset
+        colors = random.choice(self.colors)
+        """ node_color1_value = _randomize_color(colors[0] if colors is not None else (1.0, 1.0, 1.0, 1.0))
+        node_color2_value = _randomize_color(colors[1] if colors is not None else (0.0, 0.0, 0.0, 1.0))
+        
+        # Randomize color1 and color2
+        if random.uniform(0, 1) < 0.5:
+            tmp_color = node_color1_value
+            node_color1_value = node_color2_value
+            node_color2_value = tmp_color """
+
+        # Prepare photoset object
+        photoset_obj_name = "PhotoSet"
+        main_mat_name = "mat_photoset"
+        #bg_mat_name = "mat_photoset_background"
+        photoset_obj = bpy.data.objects.get(photoset_obj_name)
+        # TODO: MAKE THESE GETTERS INTO A METHOD
+        # Set colors to the chessboard
+        if photoset_obj is None:
+            assert False, f"ObjaverseSceneManager -> Object with name: '{photoset_obj_name}' " \
+                          f"does not exist in the scene."
+        main_mat = bpy.data.materials.get(main_mat_name)
+        #bg_mat = bpy.data.materials.get(bg_mat_name)
+
+        if main_mat is None:
+            assert False, f"ObjaverseSceneManager -> Material with name: '{main_mat_name}' does not exist."
+        node_color1 = main_mat.node_tree.nodes.get('Color1')
+        node_color2 = main_mat.node_tree.nodes.get('Color2')
+
+        if node_color1 is None or node_color2 is None:
+            assert False, "ObjaverseSceneManager -> node_color1 or node_color2 not available in the nodetree."
+        node_color1.inputs['Value'].default_value = random.uniform(0.3,0.6)
+        node_color2.inputs['Value'].default_value = random.uniform(0.3,0.6)
 
 
 
@@ -175,91 +212,6 @@ class ObjaverseSceneManager(SceneManager):
 
     def randomize_scene(self, config: dict):
         self._randomize_scene(config)
-
-
-    """ def _depth_map_render(self,img_idx):
-        # Enable Z-pass (Depth map)
-        lf = bpy.context.scene.lightfield[bpy.context.scene.lightfield_index]
-        lf = (utils.get_lightfield_class(lf.lf_type))(lf)
-
-        bpy.context.scene.view_layers["ViewLayer"].use_pass_z = True
-
-        # Define the output directory for the depth map
-        output_filepath =  os.path.join(self.output_dir, "lf_"+str(img_idx))
-
-        # Setup nodes to process the Z-pass in the compositor
-        bpy.context.scene.use_nodes = True
-        tree = bpy.context.scene.node_tree
-        links = tree.links
-
-        # Clear existing nodes
-        for node in tree.nodes:
-            tree.nodes.remove(node)
-
-        # Add Render Layers node
-        render_layers = tree.nodes.new(type="CompositorNodeRLayers")
-        render_layers.location = (0, 0)
-
-        # Add Map Range node to fine-tune the depth map
-        map_range = tree.nodes.new(type="CompositorNodeMapRange")
-        map_range.location = (200, 0)
-        map_range.inputs[1].default_value = 0.001  # From Min (set to near clipping)
-        map_range.inputs[2].default_value = 1000.0  # From Max (adjust based on scene scale)
-        map_range.inputs[3].default_value = 0.0  # To Min (output value)
-        map_range.inputs[4].default_value = 1.0  # To Max (output value)
-
-        # Add Composite node to output the final image
-        composite = tree.nodes.new(type="CompositorNodeComposite")
-        composite.location = (400, 0)
-
-        # Add File Output node to save the depth map
-        file_output = tree.nodes.new(type="CompositorNodeOutputFile")
-        file_output.location = (400, -200)
-        file_output.base_path = output_filepath  # Set your output directory
-        file_output.file_slots[0].path = "depth_map"
-
-         # prepare depth output node. blender changed their naming convection for render layers in 2.79... so Z became Depth and everthing else got complicated ;)
-        if 'Z' in render_layers.outputs:
-            depth_key = 'Z'
-        else:
-            depth_key = 'Depth'
-
-        # Link nodes: Render Layers -> Map Range -> File Output
-        links.new(render_layers.outputs[depth_key], map_range.inputs[0])
-        links.new(map_range.outputs[0], composite.inputs[0])
-        links.new(map_range.outputs[0], file_output.inputs[0])
-
-        # Render the scene (this will output the depth map)
-        bpy.ops.render.render(write_still=True)
-
-        
-
-        print("Depth map saved successfully!")
-
-        # Disable Z-pass (depth rendering)
-        bpy.context.scene.view_layers["ViewLayer"].use_pass_z = False
-
-        # Clear the compositor and reset it for regular rendering
-        tree = bpy.context.scene.node_tree
-        links = tree.links
-
-        # Remove all compositor nodes
-        for node in tree.nodes:
-            tree.nodes.remove(node)
-
-        # Add back basic nodes for standard rendering
-        render_layers = tree.nodes.new(type="CompositorNodeRLayers")
-        render_layers.location = (0, 0)
-
-        composite = tree.nodes.new(type="CompositorNodeComposite")
-        composite.location = (400, 0)
-
-        # Link Render Layers to Composite (for normal image output)
-        links.new(render_layers.outputs['Image'], composite.inputs['Image'])
-
-        # Now, the next render will produce a regular color image (not a depth map)
-        print("Next render will be a regular image.") """
-
 
     
     def depth_map_render(self,img_idx):
