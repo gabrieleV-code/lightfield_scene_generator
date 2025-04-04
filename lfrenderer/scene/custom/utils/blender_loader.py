@@ -8,7 +8,7 @@ import math
 from src.lfrenderer.scene.custom.utils.random_displacement import displace_objects
 import numpy as np
 
-path_to_glb_folder = r"C:\Users\gabri\.objaverse\hf-objaverse-v1\glbs" #If you are using Windows use r"\Users\Path\To\Folder"
+path_to_glb_folder = r"C:\Users\gabri\.objaverse\hf-objaverse-v1\glbs" 
 path_to_jpeg_folder = "/Users/Path/To/Folder"
 
 def roundup_(number):
