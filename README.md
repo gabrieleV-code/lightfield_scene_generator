@@ -1,6 +1,6 @@
 # Lightfield Scene Generator
 
-This project allows the generation of a dataset of synthetic lightfields through Blender 3.3. 
+Synthetic Dataset Generation of Lightfields for Intra-Prediction training.
 ---
 
 ## Table of Contents
@@ -14,7 +14,8 @@ This project allows the generation of a dataset of synthetic lightfields through
 - [License](#license)
 
 ---
-
+## About
+This project has been developed in the context of intra-prediction training. It allows the generation of a dataset of synthetic lightfields through Blender 3.3. 
 
 ## Prerequisites
 
