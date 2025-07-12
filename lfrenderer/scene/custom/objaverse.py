@@ -16,12 +16,9 @@ import io
 import struct
 import math
 
-# 2. watch blender's python path in console output at this moment
-# 3. insert the path to packages_path below and uncomment
 
 packages_path = r"C:\Users\gabri\AppData\Roaming\Python\Python310\Scripts" + r"\\..\\site-packages" # the path you see in console
 
-# 4. uncomment the next code and launch script in blender interpreter again
 
 sys.path.insert(0, packages_path )
 from PIL import Image
